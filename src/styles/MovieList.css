@@ -1,0 +1,9 @@
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    padding: 24px;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+  }
+  

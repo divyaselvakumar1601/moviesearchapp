@@ -1,12 +1,14 @@
+
+/* Updated Navbar.jsx */
 import { Link } from "react-router-dom";
+import "../styles/Navbar.css";
 
 const Navbar = () => {
   return (
-    <nav className="fixed bottom-0 w-full bg-gray-900 p-4 flex justify-around items-center shadow-lg">
-      <Link to="/" className="text-white hover:text-blue-400">Home</Link>
-      <Link to="/favorites" className="text-white hover:text-blue-400">Favorites</Link>
+    <nav className="navbar">
+      <Link to="/" className="nav-link">Home</Link>
+      <Link to="/favorites" className="nav-link">Favorites</Link>
     </nav>
   );
 };
-
-export default Navbar;
+export default Navbar

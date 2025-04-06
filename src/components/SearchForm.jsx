@@ -1,41 +1,38 @@
-const SearchForm = ({ query, setQuery, type, setType, setCurrentPage }) => {
-  const handleTypeChange = (newType) => {
-    setType(newType);
-    setCurrentPage(1); // Reset to first page when type changes
+/* Updated SearchForm.jsx */
+import { useState } from "react";
+import "../styles/SearchForm.css";
+
+const SearchForm = ({ onSearch }) => {
+  const [query, setQuery] = useState("");
+  const [type, setType] = useState("all");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSearch(query, type);
   };
 
   return (
-    <div className="flex flex-col items-center gap-6 mb-8">
-      <div className="w-full max-w-2xl">
+    <div className="search-header">
+      <h1 className="search-title">Movie Search App</h1>
+      <form onSubmit={handleSubmit} className="search-form">
         <input
           type="text"
-          placeholder="Search movies..."
-          className="w-full p-3 rounded-lg bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search movies..."
+          className="search-input"
         />
-      </div>
-      
-      <div className="flex gap-2">
-        <button
-          onClick={() => handleTypeChange("all")}
-          className={`px-4 py-2 rounded-lg ${type === "all" ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'}`}
+        <select
+          value={type}
+          onChange={(e) => setType(e.target.value)}
+          className="search-dropdown"
         >
-          All
-        </button>
-        <button
-          onClick={() => handleTypeChange("movie")}
-          className={`px-4 py-2 rounded-lg ${type === "movie" ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'}`}
-        >
-          Movies
-        </button>
-        <button
-          onClick={() => handleTypeChange("series")}
-          className={`px-4 py-2 rounded-lg ${type === "series" ? 'bg-blue-600' : 'bg-gray-700 hover:bg-gray-600'}`}
-        >
-          Series
-        </button>
-      </div>
+          <option value="all">All</option>
+          <option value="movie">Movies</option>
+          <option value="series">Series</option>
+        </select>
+        <button type="submit" className="search-button">Search</button>
+      </form>
     </div>
   );
 };
